@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const userRoutes = require("./routes/userRoutes")
 
 
 
@@ -9,6 +12,15 @@ dotenv.config();
 morgan("tiny");
 
 const app = express()
+
+// middlewares
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
+
+// route middlewares
+app.use("/api/user", userRoutes);
 
 
 const PORT = process.env.PORT || 5000
