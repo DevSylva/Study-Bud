@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../utils/validation");
 
+
+// user sign up view controller
 exports.signup = async (req, res) => {
   const validation = registerValidation(req.body);
   try {
@@ -35,7 +37,9 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+
+// user signin view controller
+exports.signin = async (req, res) => {
   const validation = loginValidation(req.body);
   try {
     if (validation["error"]) {
@@ -50,13 +54,13 @@ exports.login = async (req, res) => {
 
     // create jwt token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    res.header("auth-token", token).send(token);
+    res.header("auth-token", token).json({access_token: token});
   } catch (error) {
     res.status(400).send(error);
   }
 };
 
-
+// get all users view controller
 exports.getUsers = async (req, res) => {
   const users = await User.find()
   return res.send(users)
