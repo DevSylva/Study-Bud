@@ -65,3 +65,16 @@ exports.getUsers = async (req, res) => {
   const users = await User.find()
   return res.send(users)
 }
+
+// get a user by id
+exports.getUser = async (req, res) => {
+  const id = req.params.id
+  await User.findById(id)
+    .then((data) => {
+      if (!data) {
+      res.status(400).json({message: `User with id = ${id} does not exist`})
+      } else {
+        res.status(200).json(data)
+    }
+  })
+}
