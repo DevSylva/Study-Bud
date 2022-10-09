@@ -6,6 +6,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
 const topicRoutes = require("./routes/topicRoutes");
+const roomRoutes = require("./routes/roomRoutes");
 
 console.log(topicRoutes )
 
@@ -23,6 +24,7 @@ app.use(cors());
 // route middlewares
 app.use("/api/user", userRoutes);
 app.use("/api/topic", topicRoutes);
+app.use("/api/room", roomRoutes);
 
 
 const PORT = process.env.PORT || 5000
