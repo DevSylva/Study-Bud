@@ -10,7 +10,7 @@ const {
 router.get("/rooms", getRooms);
 router.post("/createroom", createRoom);
 router.post("/deleteroom/:roomid/:hostid", deleteRoom);
-router.post("/addparticipants/:roomid/:hostid", addParticipants);
+router.post("/addparticipants/:roomid/:hostid/:participantid", addParticipants);
 
 
 module.exports = router
