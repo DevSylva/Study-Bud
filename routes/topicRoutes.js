@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const { getTopics, createTopic } = require("../controllers/topic");
+const verifyAuth = require("../utils/verifyauth");
 
-router.get("/topics", getTopics);
-router.post("/createtopic", createTopic);
+router.get("/topics", verifyAuth, getTopics);
+router.post("/createtopic", verifyAuth, createTopic);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const verifyAuth = require("../utils/verifyauth");
 const {
   getRooms,
   createRoom,
@@ -7,10 +8,10 @@ const {
 } = require("../controllers/room");
 
 
-router.get("/rooms", getRooms);
-router.post("/createroom", createRoom);
-router.post("/deleteroom/:roomid/:hostid", deleteRoom);
-router.post("/addparticipants/:roomid/:hostid/:participantid", addParticipants);
+router.get("/rooms", verifyAuth, getRooms);
+router.post("/createroom", verifyAuth, createRoom);
+router.post("/deleteroom/:roomid/:hostid", verifyAuth, deleteRoom);
+router.post("/addparticipants/:roomid/:hostid/:participantid", verifyAuth, addParticipants);
 
 
 module.exports = router
